@@ -1,0 +1,150 @@
+From beff6d00770304b0dd75c718d7824db29c848cb0 Mon Sep 17 00:00:00 2001
+From: Dmitry Rodin <rodin.dmitry@gmail.com>
+Date: Thu, 18 Jul 2019 09:26:25 +0700
+Subject: [PATCH 2/3] reenable ippd manager form web interface
+
+---
+ .../customer/apps/html/skins/DSL2730E/menu.html              |  4 +++-
+ .../customer/apps/html/skins/DSL2730U/menu.html              |  4 +++-
+ .../customer/apps/html/skins/DSL2750E/menu.html              |  4 +++-
+ .../customer/apps/html/skins/DSL2750U/menu.html              |  4 +++-
+ .../customer/apps/html/standard/page/nwtools.html            |  5 +++--
+ .../customer/apps/html/standard/page/services.js             | 12 ++++++++++++
+ 6 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730E/menu.html b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730E/menu.html
+index c95ebeb..ece9dcc 100755
+--- a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730E/menu.html
++++ b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730E/menu.html
+@@ -111,7 +111,9 @@
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=tr069"><span id="lang_tr069">TR-069</span></a></li>
+ 						<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=certificate"><span id="lang_certificate">Certificates</span></a></li>
+ 					`?>
+-				<!--<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id="lang_printer">Printer</span></a></li>-->
++					<?if eq 1 $var:mod_IPPMNGR
++					`       <li id="<?if eq `print` $var:subpage `up`?>" class="Net"><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id = "lang_printer">Printer</span></a></li>
++					`?>
+ 					<?if eq 1 $var:mod_LAN_PORT_VLAN
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=lpvlan"><span id="lang_lanPortVlan">Lan Port Vlan</span></a></li>
+ 					`?>
+diff --git a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730U/menu.html b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730U/menu.html
+index c95ebeb..ece9dcc 100755
+--- a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730U/menu.html
++++ b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2730U/menu.html
+@@ -111,7 +111,9 @@
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=tr069"><span id="lang_tr069">TR-069</span></a></li>
+ 						<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=certificate"><span id="lang_certificate">Certificates</span></a></li>
+ 					`?>
+-				<!--<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id="lang_printer">Printer</span></a></li>-->
++					<?if eq 1 $var:mod_IPPMNGR
++					`       <li id="<?if eq `print` $var:subpage `up`?>" class="Net"><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id = "lang_printer">Printer</span></a></li>
++					`?>
+ 					<?if eq 1 $var:mod_LAN_PORT_VLAN
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=lpvlan"><span id="lang_lanPortVlan">Lan Port Vlan</span></a></li>
+ 					`?>
+diff --git a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750E/menu.html b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750E/menu.html
+index 0ec2693..6ee0471 100755
+--- a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750E/menu.html
++++ b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750E/menu.html
+@@ -111,7 +111,9 @@
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=tr069"><span id="lang_tr069">TR-069</span></a></li>
+ 						<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=certificate"><span id="lang_certificate">Certificates</span></a></li>
+ 					`?>
+-				<!--<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id="lang_printer">Printer</span></a></li>-->
++					<?if eq 1 $var:mod_IPPMNGR
++					`       <li id="<?if eq `print` $var:subpage `up`?>" class="Net"><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id = "lang_printer">Printer</span></a></li>
++					`?>
+ 					<?if eq 1 $var:mod_LAN_PORT_VLAN
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=lpvlan"><span id="lang_lanPortVlan">Lan Port Vlan</span></a></li>
+ 					`?>
+diff --git a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750U/menu.html b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750U/menu.html
+index 19c9818..7ceaaf2 100755
+--- a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750U/menu.html
++++ b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/skins/DSL2750U/menu.html
+@@ -109,7 +109,9 @@
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=tr069"><span id="lang_tr069">TR-069</span></a></li>
+ 						<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=certificate"><span id="lang_certificate">Certificates</span></a></li>
+ 					`?>
+-				<!--<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id="lang_printer">Printer</span></a></li>-->
++					<?if eq 1 $var:mod_IPPMNGR
++					`       <li id="<?if eq `print` $var:subpage `up`?>" class="Net"><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=print"><span id = "lang_printer">Printer</span></a></li>
++					`?>
+ 					<?if eq 1 $var:mod_LAN_PORT_VLAN
+ 					`	<li><a href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=nwtools&var:subpage=lpvlan"><span id="lang_lanPortVlan">Lan Port Vlan</span></a></li>
+ 					`?>
+diff --git a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/nwtools.html b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/nwtools.html
+index af18c67..ba52a80 100755
+--- a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/nwtools.html
++++ b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/nwtools.html
+@@ -96,13 +96,14 @@
+ 			<div class="div_button"><input type="button" id = "certificate" value="Certificates" onClick="toCertificates()"></div>
+ 		</div>
+ 		`?>
+-		<!--
++		<?if eq 1 $var:mod_IPPMNGR
++		`
+ 		<p class="do bk_black" id = "lang_cer_configPrinter">Network Tools -- Printer</p>
+ 		<div do class="div_black">
+ 			<p id = "lang_cer_printer">Allows you to manage printer .</p>
+ 			<div class="div_button"><input type="button" id = "cerprinter" value="printer" onClick="toprinter()"></div>
+ 		</div>
+-		-->
++		`?>
+ 
+ 	  <?if eq 1 $var:mod_LAN_PORT_VLAN
+ 		`	
+diff --git a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/services.js b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/services.js
+index 3ed6510..14f47b3 100755
+--- a/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/services.js
++++ b/DSL2750U_U1_GPL_ME_1.09_ME/customer/apps/html/standard/page/services.js
+@@ -148,8 +148,11 @@ function createTable()
+ 		for(var j = 0; j < _lenth; j++){
+ 			if (G_LgAccessCtrl[j][0] == 'SNMP' )
+ 				continue;
++			<?if neq 1 $var:mod_IPPMNGR
++                	`
+ 			if(G_LgAccessCtrl[j][0] == 'PRINTER')
+ 				continue;
++			`?>
+ 			<?if neq 1 $var:mod_TR069
+ 			`
+ 			if(G_LgAccessCtrl[j][0] == 'TR069')
+@@ -173,8 +176,11 @@ function createTable()
+ 			//lyl remove ssh and snmp becasuse ssh we do not support, snmp is always allowed
+ 			if (G_RgAccessCtrl[i][0] == 'SNMP' )
+ 				continue;
++			<?if neq 1 $var:mod_IPPMNGR
++                        `
+ 			if(G_RgAccessCtrl[i][0] == 'PRINTER')
+ 				continue;
++			`?>
+ 			<?if neq 1 $var:mod_TR069
+ 			`
+ 			if(G_RgAccessCtrl[i][0] == 'TR069')
+@@ -252,8 +258,11 @@ function uiSubmit()
+ 		{
+ 			if (G_RgAccessCtrl[i][0] == 'SNMP' )
+ 				continue;
++			<?if neq 1 $var:mod_IPPMNGR
++                        `
+ 			if(G_RgAccessCtrl[i][0] == 'PRINTER')
+ 				continue;
++			`?>
+ 			<?if neq 1 $var:mod_TR069
+ 			`
+ 			if(G_RgAccessCtrl[i][0] == 'TR069')
+@@ -298,8 +307,11 @@ function uiSubmit()
+ 		{
+ 			if (G_LgAccessCtrl[i][0] == 'SNMP' )
+ 				continue;
++			<?if neq 1 $var:mod_IPPMNGR
++                        `
+ 			if(G_LgAccessCtrl[i][0] == 'PRINTER')
+ 				continue;
++			`?>
+ 			<?if neq 1 $var:mod_TR069
+ 			`
+ 			if(G_LgAccessCtrl[i][0] == 'TR069')
+-- 
+2.14.1
+
